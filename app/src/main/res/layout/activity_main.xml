@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/content"
         android:src="@drawable/netology_post_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +24,6 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/content"
         android:src="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,11 +41,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/likes"
+        android:layout_marginStart="16dp"
         android:src="@drawable/sharp_favorite_24"
-        app:layout_constraintStart_toStartOf="@id/content"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content"
-        app:tint="?colorControlNormal" />
+        />
 
     <ImageView
         android:id="@+id/share"
@@ -55,11 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/ic_share"
         android:src="@drawable/baseline_ios_share_24"
         app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/countLikes"
+        app:layout_constraintStart_toEndOf="@id/countViewLikes"
         app:layout_constraintTop_toBottomOf="@id/content"
         app:tint="?colorControlNormal" />
 
@@ -69,7 +66,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="38dp"
-        android:contentDescription="@string/ic_view"
         android:src="@drawable/sharp_eye_tracking_24"
         app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +82,6 @@
         android:layout_marginBottom="4dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@string/author"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toStartOf="@id/info"
         app:layout_constraintStart_toEndOf="@id/avatar"
@@ -102,7 +97,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:maxLines="1"
-        android:text="@string/publisher"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/author" />
 
@@ -112,36 +106,33 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBarrier" />
+        app:layout_constraintTop_toBottomOf="@id/topBarrier"
+        android:autoLink="all"
+        />
 
     <TextView
-        android:id="@+id/countLikes"
+        android:id="@+id/countViewLikes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/count_likes"
         app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintStart_toEndOf="@+id/like" />
 
     <TextView
-        android:id="@+id/countShare"
+        android:id="@+id/countViewShare"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/count_shares"
         app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintStart_toEndOf="@+id/share" />
 
     <TextView
-        android:id="@+id/countView"
+        android:id="@+id/countViewWatch"
         android:layout_width="0dp"
-        android:maxLines="1"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/count_views"
         app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintStart_toEndOf="@+id/view" />
 

@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+
     namespace = "ru.netology.nmedia"
     compileSdk = 36
 
@@ -16,7 +17,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -26,11 +29,14 @@ android {
             )
         }
     }
+
     compileOptions {
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
+
         jvmTarget = "11"
     }
 }
