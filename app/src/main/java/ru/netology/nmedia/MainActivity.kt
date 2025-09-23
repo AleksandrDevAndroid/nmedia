@@ -24,12 +24,11 @@ class MainActivity : AppCompatActivity() {
         от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила,
         которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать
         цепочку перемен → http://netolo.gy/fyb"""",
-            countLiked = 999,
-            countShare = 1499,
+            countLiked = 100010,
+            countShare = 633199,
             countView = 0,
             likeBeMy = false,
             shareBeMy = false
-
         )
 
 
@@ -41,9 +40,9 @@ class MainActivity : AppCompatActivity() {
             author.text = post.author
             publisher.text = post.publisher
             content.text = post.content
-            countViewShare.text = post.countShare.toString()
-            countViewLikes.text = post.countLiked.toString()
-            countViewWatch.text = post.countView.toString()
+            countViewShare.text = Format.format(post.countShare)
+            countViewLikes.text = Format.format(post.countLiked)
+            countViewWatch.text = Format.format(post.countView)
 
             if (post.likeBeMy) {
                 like.setImageResource(R.drawable.sharp_favorite_24)
