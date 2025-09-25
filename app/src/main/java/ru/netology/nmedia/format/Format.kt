@@ -2,7 +2,6 @@ package ru.netology.nmedia.format
 
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.math.floor
 
 object Format : FormatCount {
     override fun format(num: Long): String {
