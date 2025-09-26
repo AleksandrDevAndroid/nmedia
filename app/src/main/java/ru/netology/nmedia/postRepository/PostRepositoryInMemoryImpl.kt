@@ -14,8 +14,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
         от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила,
         которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать
         цепочку перемен → http://netolo.gy/fyb"""",
-        countLiked = 1125,
-        countShare = 1499,
+        countLiked = 0,
+        countShare = 0,
         countView = 0,
         likeBeMy = false
     )
@@ -35,6 +35,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun share() {
         val post = requireNotNull(data.value) { "post not initialized" }
-        data.value = post.copy(countShare = ++post.countShare)
+        data.value = post.copy(countShare = post.countShare + 1)
     }
 }
