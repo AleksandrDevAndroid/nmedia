@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         applyInsets(binding.root)
 
         viewModel.get().observe(this) { posts ->
-            adapter.data = posts
+            adapter.submitList(posts)
         }
     }
 }

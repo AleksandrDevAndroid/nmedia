@@ -15,7 +15,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила,
         которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать
         цепочку перемен → http://netolo.gy/fyb"""",
-            countLiked = 1225,
+            countLiked = 0,
             countShare = 0,
             countView = 0,
             likeBeMy = false

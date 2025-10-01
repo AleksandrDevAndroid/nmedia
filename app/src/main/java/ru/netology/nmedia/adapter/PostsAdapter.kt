@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.databinding.PostCardBinding
@@ -13,24 +14,17 @@ class PostsAdapter(
     private val likeClickListener: likeClickListener,
     private var shareClickListener: shareClickListener
 ) :
-    RecyclerView.Adapter<PostViewHolder>() {
+    ListAdapter<Post, PostViewHolder>(PostDiffItemCallback()) {
 
-    var data: List<Post> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PostViewHolder(binding, likeClickListener,shareClickListener)
+        return PostViewHolder(binding, likeClickListener, shareClickListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount(): Int = data.size
 }
