@@ -1,5 +1,7 @@
 package ru.netology.nmedia.DTO
 
+import java.time.LocalDate
+
 data class Post(
     val id: Long,
     val author: String,

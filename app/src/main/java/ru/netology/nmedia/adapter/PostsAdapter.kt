@@ -3,16 +3,20 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.databinding.PostCardBinding
 
-typealias likeClickListener = (post: Post) -> Unit
-typealias shareClickListener = (post: Post) -> Unit
+interface PostListener {
+    fun onLike(post: Post)
+    fun onShare(post: Post)
+    fun onRemove(post: Post)
+    fun onEdite(post: Post)
+    fun cancelEdit(post: Post)
+}
 
 class PostsAdapter(
-    private val likeClickListener: likeClickListener,
-    private var shareClickListener: shareClickListener
+    private val listener: PostListener
+
 ) :
     ListAdapter<Post, PostViewHolder>(PostDiffItemCallback()) {
 
@@ -21,7 +25,7 @@ class PostsAdapter(
         val binding = PostCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PostViewHolder(binding, likeClickListener, shareClickListener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
