@@ -64,15 +64,14 @@ class PostRepositoryInMemoryImpl : PostRepository {
             data.value = listOf(post.copy(id = nextId++)) + data.value.orEmpty()
         } else {
             data.value = data.value?.map {
-                if(it.id == post.id){
+                if (it.id == post.id) {
                     post
-                }else {
+                } else {
                     it
                 }
             }
         }
     }
-
     override fun cancelEdit(post: Post) {
         data.value = null
     }

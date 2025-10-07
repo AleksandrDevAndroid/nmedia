@@ -38,15 +38,17 @@
         app:layout_constraintEnd_toStartOf="@id/save"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/save"
+        style="@style/Widget.Material3.otherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:src="@drawable/outline_check_circle_24"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:icon="@drawable/outline_check_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="?colorControlNormal"/>
+        app:tint="?colorControlNormal" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/bottomBarrier"
@@ -65,20 +67,24 @@
         app:layout_constraintBottom_toTopOf="@id/content"
         app:layout_constraintEnd_toStartOf="@id/cancel"
         app:layout_constraintStart_toEndOf="@id/pen"
-        app:tint="?colorControlNormal"/>
+        app:tint="?colorControlNormal" />
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:src="@drawable/outline_cancel_24"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        style="@style/Widget.Material3.otherButton"
+        app:icon="@drawable/outline_cancel_24"
         app:layout_constraintBottom_toTopOf="@id/content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="?colorControlNormal"/>
+        app:tint="?colorControlNormal" />
 
     <ImageView
         android:id="@+id/pen"
+        style="@style/Widget.Material3.otherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"

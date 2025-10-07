@@ -74,12 +74,15 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(binding.content)
                 binding.content.setText(edited.content)
             }
+
+
         }
 
         binding.save.setOnClickListener {
             AndroidUtils.showKeyboard(binding.content)
             val currentText = binding.content.text.trim().toString()
-            if (currentText.isNullOrBlank()) {
+            binding.group.isGone = true
+            if (currentText.isBlank()) {
                 Toast.makeText(this, getString(R.string.post_content_is_empty), Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener

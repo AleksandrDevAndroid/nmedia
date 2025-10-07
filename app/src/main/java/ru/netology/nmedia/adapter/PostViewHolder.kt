@@ -19,17 +19,10 @@ class PostViewHolder(
             author.text = post.author
             publisher.text = post.publisher
             content.text = post.content
-            countViewShare.text = Format.format(post.countShare)
-            countViewLikes.text = Format.format(post.countLiked)
-            countViewWatch.text = Format.format(post.countView)
+            like.isChecked = post.likeBeMy
+            like.text = Format.format(post.countLiked)
+            share.text = Format.format(post.countShare)
 
-
-            like.setImageResource(
-                if (post.likeBeMy) R.drawable.baseline_favorite_24 else R.drawable.sharp_favorite_24
-            )
-
-            countViewLikes.text = Format.format(post.countLiked)
-            countViewShare.text = Format.format(post.countShare)
 
             like.setOnClickListener {
                 listener.onLike(post)

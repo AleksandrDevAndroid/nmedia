@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Material3.LikeButton" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="iconTint">@color/color_like</item>
+    </style>
+    <style name="Widget.Material3.otherButton" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="iconTint">?attr/colorControlNormal</item>
+    </style>
+
+</resources>

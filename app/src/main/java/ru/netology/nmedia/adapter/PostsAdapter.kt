@@ -25,7 +25,7 @@ class PostsAdapter(
         val binding = PostCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PostViewHolder(binding, listener)
+        return PostViewHolder(binding,listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
