@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.save.setOnClickListener {
+            AndroidUtils.showKeyboard(binding.content)
             val currentText = binding.content.text.trim().toString()
             if (currentText.isNullOrBlank()) {
                 Toast.makeText(this, getString(R.string.post_content_is_empty), Toast.LENGTH_SHORT)

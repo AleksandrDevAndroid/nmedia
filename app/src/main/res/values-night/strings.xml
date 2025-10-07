@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="remove">remove</string>
+    <string name="remove">Remove</string>
     <string name="massage">Massage</string>
     <string name="post_content_is_empty">Post content is empty!</string>
-    <string name="edit" />
+    <string name="edit">Edit</string>
     <string name="editMessage">Edit massage</string>
 </resources>
