@@ -4,5 +4,6 @@
     <string name="remove">Удалить</string>
     <string name="massage">Текст</string>
     <string name="post_content_is_empty">Вы не добавили текст</string>
-    <string name="edit">Редоктировать</string>
+    <string name="edit">Редактировать</string>
+    <string name="editMessage">Редактировать</string>
 </resources>

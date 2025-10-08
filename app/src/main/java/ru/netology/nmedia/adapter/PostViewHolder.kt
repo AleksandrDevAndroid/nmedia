@@ -1,8 +1,11 @@
 package ru.netology.nmedia.adapter
 
 
+import android.annotation.SuppressLint
+import android.os.Build
+import android.view.View
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
@@ -31,24 +34,45 @@ class PostViewHolder(
                 listener.onShare(post)
             }
             menu.setOnClickListener {
-                PopupMenu(it.context, it).apply {
-                    inflate(R.menu.post_menu)
-
-                    setOnMenuItemClickListener { item ->
-                        when (item.itemId) {
-                            R.id.remove -> {
-                                listener.onRemove(post)
-                                true
-                            }
-                            R.id.edit ->{
-                                listener.onEdite(post)
-                                true
-                            }
-                            else -> false
-                        }
-                    }
-                }.show()
+                showPopupMenu(it, post)
             }
         }
+
     }
+
+    @SuppressLint("RestrictedApi")
+    private fun showPopupMenu(view: View, post: Post) {
+        val context = view.context ?: return
+
+        val popupMenu = PopupMenu(context, view)
+        popupMenu.menuInflater.inflate(R.menu.post_menu, popupMenu.menu)
+
+        if (popupMenu.menu is MenuBuilder) {
+            val menuBuilder = popupMenu.menu as MenuBuilder
+            menuBuilder.setOptionalIconsVisible(true)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true)
+        }
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.remove -> {
+                    listener.onRemove(post)
+                    true
+                }
+
+                R.id.edit -> {
+                    listener.onEdite(post)
+                    true
+                }
+
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
+
 }
+
