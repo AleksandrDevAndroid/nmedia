@@ -20,13 +20,11 @@ private val empty = Post(
 
 class PostViewModel : ViewModel() {
     private val repository: PostRepository = PostRepositoryInMemoryImpl()
-
     val edited = MutableLiveData(empty)
     fun get(): LiveData<List<Post>> = repository.get()
     fun likeById(id: Long) = repository.likeById(id)
     fun share(id: Long) = repository.share(id)
     fun removeById(id: Long) = repository.removeBeId(id)
-    fun cancelEdit(post: Post) = repository.cancelEdit(post)
 
     fun save(newContent: String) {
         edited.value?.let { post ->
@@ -37,8 +35,12 @@ class PostViewModel : ViewModel() {
         edited.value = empty
     }
 
-    fun edit(post: Post){
+    fun edit(post: Post) {
         edited.value = post
     }
 
+    fun cancelEdit() {
+        edited.value = empty
+
+    }
 }

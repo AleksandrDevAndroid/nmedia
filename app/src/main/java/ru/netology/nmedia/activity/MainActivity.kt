@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun cancelEdit(post: Post) {
-                    viewModel.cancelEdit(post)
+                    viewModel.cancelEdit()
                 }
             }
         )
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         binding.ListPosts.adapter = adapter
         setContentView(binding.root)
         applyInsets(binding.root)
+
         viewModel.get().observe(this) { posts ->
             adapter.submitList(posts)
         }
@@ -66,8 +67,9 @@ class MainActivity : AppCompatActivity() {
             binding.cancel.setOnClickListener {
                 binding.content.setText("")
                 binding.content.clearFocus()
-                AndroidUtils.hideKeyboard(binding.content)
                 binding.group.isGone = true
+                viewModel.cancelEdit()
+
             }
             if (edited.id != 0L) {
                 binding.group.isVisible = true
