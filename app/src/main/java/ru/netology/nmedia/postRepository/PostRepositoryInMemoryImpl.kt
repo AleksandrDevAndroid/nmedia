@@ -1,12 +1,11 @@
 package ru.netology.nmedia.postRepository
 
-import android.icu.util.LocaleData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.DTO.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
-    private val defaultPosts = List(3) { counter ->
+    private val defaultPosts = List(100) { counter ->
         Post(
             id = counter + 1L,
             author = "Нетология. Университет интернет-профессий будущего",
@@ -22,11 +21,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
             publisher = ""
         )
     }
-    private var nextId = defaultPosts.first().id + 1
+    private var nextId = defaultPosts.maxBy { it.id }.id.plus(1)
     private val data = MutableLiveData(defaultPosts)
 
     override fun get(): LiveData<List<Post>> = data
-
     override fun likeById(id: Long) {
         val posts = data.value.orEmpty()
         data.value = posts.map { post ->
@@ -61,7 +59,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun save(post: Post) {
         if (post.id == 0L) {
-            data.value = listOf(post.copy(id = nextId++)) + data.value.orEmpty()
+            data.value = listOf(post.copy(id = nextId ++)) + data.value.orEmpty()
         } else {
             data.value = data.value?.map {
                 if (it.id == post.id) {
@@ -72,7 +70,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
             }
         }
     }
-
 }
 
 

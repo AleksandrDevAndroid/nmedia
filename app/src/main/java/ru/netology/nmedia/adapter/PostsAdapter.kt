@@ -20,12 +20,11 @@ class PostsAdapter(
 ) :
     ListAdapter<Post, PostViewHolder>(PostDiffItemCallback()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PostViewHolder(binding,listener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {

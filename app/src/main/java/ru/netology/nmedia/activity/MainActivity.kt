@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-
 private fun applyInsets(root: ConstraintLayout) {
     ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
         val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
