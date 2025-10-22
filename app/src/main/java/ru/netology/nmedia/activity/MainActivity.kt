@@ -3,6 +3,7 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.launch
 import androidx.activity.viewModels
@@ -67,6 +68,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onEdit(post: Post) {
+                    if(post.video == null){
+                        return
+                    }
                     val pair = Pair(post.id, post.content)
                     editPostLauncher.launch(pair)
                 }

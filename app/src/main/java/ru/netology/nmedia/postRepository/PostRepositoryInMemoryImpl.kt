@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.DTO.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
-    private val defaultPosts = List(100) { counter ->
+    private val defaultPosts = List(10) { counter ->
         Post(
             id = counter + 1L,
             author = "Нетология. Университет интернет-профессий будущего",
