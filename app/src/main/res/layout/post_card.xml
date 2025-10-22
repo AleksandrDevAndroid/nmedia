@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:minWidth="0dp"
         android:minHeight="0dp"
+        android:textColor="?android:textColorPrimary"
+        app:dropDownBackgroundTint="@color/cardview_shadow_start_color"
         app:icon="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="?android:textColorPrimary"
-        app:dropDownBackgroundTint="@color/cardview_shadow_start_color"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.Barrier
@@ -50,7 +50,7 @@
         android:minHeight="0dp"
         app:icon="@drawable/it_like_selector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content" />
+        app:layout_constraintTop_toBottomOf="@id/attachments" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
@@ -99,6 +99,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBarrier" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/attachments"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/outline_play_arrow_24"
+        android:backgroundTint="@android:color/transparent"
+        app:maxImageSize="80dp"
+        app:fabCustomSize="240dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
+    <ImageButton
+        android:id="@+id/preview"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/video"
+        android:autoLink="all"
+        android:backgroundTint="@android:color/transparent"
+        app:maxImageSize="240dp"
+        app:fabCustomSize="240dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/videoBarrier"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="attachments,videoBarrier" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

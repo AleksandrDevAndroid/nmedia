@@ -7,5 +7,6 @@ data class Post(
     val countLiked: Long,
     val countShare: Long,
     val countView: Int,
-    val likeBeMy: Boolean
+    val likeBeMy: Boolean,
+    val video : String?
 )

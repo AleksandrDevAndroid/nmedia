@@ -18,7 +18,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             countShare = 0,
             countView = 0,
             likeBeMy = false,
-            publisher = ""
+            publisher = "",
+            video = "https://vk.com/video-177304549_456239878?ysclid=mh2chh9ps9576943185"
         )
     }
     private var nextId = defaultPosts.maxBy { it.id }.id.plus(1)

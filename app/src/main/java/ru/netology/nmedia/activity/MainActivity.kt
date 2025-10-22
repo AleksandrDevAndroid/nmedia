@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.launch
@@ -15,6 +16,8 @@ import ru.netology.nmedia.adapter.PostListener
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.viewmodel.PostViewModel
+import java.net.URL
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<PostViewModel>()
@@ -64,8 +67,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onEdit(post: Post) {
-                  val pair = Pair(post.id,post.content)
+                    val pair = Pair(post.id, post.content)
                     editPostLauncher.launch(pair)
+                }
+
+                override fun onPlay(post: Post) {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                    if (intent.resolveActivity(packageManager) != null) {
+                        startActivity(intent)
+                    }else
+                        startActivity(intent)
                 }
             }
         )
@@ -77,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.get().observe(this) { posts ->
             adapter.submitList(posts)
         }
-
 
 
         binding.add.setOnClickListener {

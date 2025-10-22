@@ -6,6 +6,7 @@ import android.os.Build
 import android.view.View
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
@@ -25,8 +26,13 @@ class PostViewHolder(
             like.isChecked = post.likeBeMy
             like.text = Format.format(post.countLiked)
             share.text = Format.format(post.countShare)
+            if(post.video != null){
+                binding.group.isVisible = true
+            }
 
-
+            attachments.setOnClickListener {
+                listener.onPlay(post)
+            }
             like.setOnClickListener {
                 listener.onLike(post)
             }

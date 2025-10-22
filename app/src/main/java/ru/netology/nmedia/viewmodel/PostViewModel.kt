@@ -1,5 +1,6 @@
 package ru.netology.nmedia.viewmodel
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,8 @@ private val empty = Post(
     countLiked = 0,
     countShare = 0,
     countView = 0,
-    likeBeMy = false
+    likeBeMy = false,
+    video = null
 )
 
 class PostViewModel : ViewModel() {
@@ -41,4 +43,6 @@ class PostViewModel : ViewModel() {
             repository.save(post.copy(content = pair.second))
         }
     }
+
 }
+

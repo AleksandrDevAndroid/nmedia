@@ -9,4 +9,6 @@
     <string name="error_empety_connent">Empety connent</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="photo">Photo/Video</string>
+    <string name="emptyURL">Video not available</string>
 </resources>
