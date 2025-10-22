@@ -5,4 +5,8 @@
     <string name="post_content_is_empty">Post content is empty!</string>
     <string name="edit">Edit</string>
     <string name="editMessage">Edit massage</string>
+    <string name="chooser_post_share">Share</string>
+    <string name="error_empety_connent">Empety connent</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

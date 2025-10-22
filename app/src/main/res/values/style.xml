@@ -6,4 +6,5 @@
     <style name="Widget.Material3.otherButton" parent="Widget.Material3.Button.TextButton.Icon">
         <item name="iconTint">?attr/colorControlNormal</item>
     </style>
+
 </resources>

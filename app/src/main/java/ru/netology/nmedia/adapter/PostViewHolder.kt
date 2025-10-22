@@ -64,7 +64,7 @@ class PostViewHolder(
                 }
 
                 R.id.edit -> {
-                    listener.onEdite(post)
+                    listener.onEdit(post)
                     true
                 }
 

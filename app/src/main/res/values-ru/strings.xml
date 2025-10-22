@@ -6,4 +6,8 @@
     <string name="post_content_is_empty">Вы не добавили текст</string>
     <string name="edit">Редактировать</string>
     <string name="editMessage">Редактировать</string>
+    <string name="chooser_post_share">Поделиться</string>
+    <string name="error_empety_connent">Вы не добавили текст</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

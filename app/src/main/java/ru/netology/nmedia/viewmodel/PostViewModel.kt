@@ -36,11 +36,9 @@ class PostViewModel : ViewModel() {
         edited.value = empty
     }
 
-    fun edit(post: Post) {
-        edited.value = post
-    }
-
-    fun cancelEdit() {
-        edited.value = empty
+    fun edit(pair: Pair<Long, String>) {
+        repository.get().value?.find { it.id == pair.first }?.let { post ->
+            repository.save(post.copy(content = pair.second))
+        }
     }
 }

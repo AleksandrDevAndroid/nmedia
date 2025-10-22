@@ -10,8 +10,7 @@ interface PostListener {
     fun onLike(post: Post)
     fun onShare(post: Post)
     fun onRemove(post: Post)
-    fun onEdite(post: Post)
-    fun cancelEdit(post: Post)
+    fun onEdit(post : Post)
 }
 
 class PostsAdapter(
