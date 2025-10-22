@@ -50,7 +50,7 @@
         android:minHeight="0dp"
         app:icon="@drawable/it_like_selector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/attachments" />
+        app:layout_constraintTop_toBottomOf="@id/preview" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
@@ -107,6 +107,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/outline_play_arrow_24"
+        android:autoLink="all"
         android:backgroundTint="@android:color/transparent"
         app:maxImageSize="80dp"
         app:fabCustomSize="240dp"
@@ -129,19 +130,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/videoBarrier"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/content" />
-
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="attachments,videoBarrier" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="attachments,preview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
