@@ -10,4 +10,5 @@
     <string name="cancel">Cancel</string>
     <string name="photo">Photo/Video</string>
     <string name="emptyURL">Video not available</string>
+    <string name="error_empty_content">Empty content</string>
 </resources>

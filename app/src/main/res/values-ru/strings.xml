@@ -7,7 +7,7 @@
     <string name="edit">Редактировать</string>
     <string name="editMessage">Редактировать</string>
     <string name="chooser_post_share">Поделиться</string>
-    <string name="error_empety_connent">Вы не добавили текст</string>
+    <string name="error_empty_content">Вы не добавили текст</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
     <string name="photo">Видео/Фото</string>
