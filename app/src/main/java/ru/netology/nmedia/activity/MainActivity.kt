@@ -68,9 +68,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onEdit(post: Post) {
-                    if(post.video == null){
-                        return
-                    }
                     val pair = Pair(post.id, post.content)
                     editPostLauncher.launch(pair)
                 }

@@ -26,9 +26,11 @@ class PostViewHolder(
             like.isChecked = post.likeBeMy
             like.text = Format.format(post.countLiked)
             share.text = Format.format(post.countShare)
-            if(post.video != null) {
+
+            if (post.video != null) {
                 binding.group.isVisible = true
-            }
+            }else
+                 binding.group.isVisible = false
             attachments.setOnClickListener {
                 listener.onPlay(post)
             }
