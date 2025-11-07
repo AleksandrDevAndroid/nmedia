@@ -3,13 +3,16 @@ package ru.netology.nmedia.adapter
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
+import ru.netology.nmedia.databinding.FragmentShowPostBinding
 import ru.netology.nmedia.databinding.PostCardBinding
 import ru.netology.nmedia.format.Format
 
@@ -27,11 +30,9 @@ class PostViewHolder(
             like.text = Format.format(post.countLiked)
             share.text = Format.format(post.countShare)
 
-            if (post.video != null) {
-                binding.group.isVisible = true
-            }else
-                 binding.group.isVisible = false
-            attachments.setOnClickListener {
+            binding.group.isVisible = post.video != null
+
+            playVideo.setOnClickListener {
                 listener.onPlay(post)
             }
             like.setOnClickListener {
@@ -43,9 +44,13 @@ class PostViewHolder(
             menu.setOnClickListener {
                 showPopupMenu(it, post)
             }
-        }
+            content.setOnClickListener {
+                listener.onOpen(post)
+            }
 
+        }
     }
+
 
     @SuppressLint("RestrictedApi")
     private fun showPopupMenu(view: View, post: Post) {
@@ -80,6 +85,5 @@ class PostViewHolder(
         }
         popupMenu.show()
     }
-
 }
 

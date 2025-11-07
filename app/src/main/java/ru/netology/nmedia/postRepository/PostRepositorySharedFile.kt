@@ -70,6 +70,7 @@ class PostRepositorySharedFile(private val context: Context) : PostRepository {
         sync()
     }
 
+
     private fun readPosts(): List<Post> {
         val file = context.filesDir.resolve(POST_FILE)
         return if (file.exists()) {

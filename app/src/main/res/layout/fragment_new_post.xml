@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.NewPostActivity">
+    tools:context=".fragment.NewPostFragment">
 
     <EditText
         android:id="@+id/edit"
@@ -41,8 +41,9 @@
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/cancel"
         app:srcCompat="@drawable/outline_cancel_24" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/attachments"
+        android:id="@+id/addMedia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottomAppBarStart"

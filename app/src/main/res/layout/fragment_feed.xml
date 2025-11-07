@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".activity.MainActivity"
+        tools:context=".fragment.FeedFragment"
         tools:listitem="@layout/post_card" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

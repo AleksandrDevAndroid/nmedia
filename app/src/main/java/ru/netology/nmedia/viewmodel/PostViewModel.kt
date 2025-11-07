@@ -16,14 +16,13 @@ private val empty = Post(
     content = "",
     countLiked = 0,
     countShare = 0,
-    countView = 0,
     likeBeMy = false,
-    video = null
+    video = "https://vk.com/video-44853984_456240941"
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PostRepository = PostRepositorySharedFile(application)
-    val edited = MutableLiveData(empty)
+    var edited = MutableLiveData(empty)
 
     fun get(): LiveData<List<Post>> = repository.get()
     fun likeById(id: Long) = repository.likeById(id)
@@ -39,11 +38,14 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
     }
 
-    fun edit(pair: Pair<Long, String>) {
-        repository.get().value?.find { it.id == pair.first }?.let { post ->
-            repository.save(post.copy(content = pair.second))
-        }
+    fun edit(post: Post) {
+        edited.value = post
     }
 
+    fun addVideo(url: String) {
+
+    }
 }
+
+
 
