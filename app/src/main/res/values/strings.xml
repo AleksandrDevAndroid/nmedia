@@ -3,6 +3,7 @@
     <string name="remove">Remove</string>
     <string name="massage">Text</string>
     <string name="post_content_is_empty">Post content is empty!</string>
+    <string name="post_url_is_empty">Post url is empty!</string>
     <string name="edit">Edit</string>
     <string name="editMessage">Edit massage</string>
     <string name="chooser_post_share">Share</string>

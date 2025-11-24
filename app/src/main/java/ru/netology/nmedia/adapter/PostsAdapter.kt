@@ -13,6 +13,7 @@ interface PostListener {
     fun onEdit(post : Post)
     fun onPlay(post: Post)
     fun onOpen(post : Post)
+
 }
 
 class PostsAdapter(

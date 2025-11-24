@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityAppBinding
+import ru.netology.nmedia.utils.LongArg
 import ru.netology.nmedia.utils.StringArg
 
 class AppActivity : AppCompatActivity() {
@@ -46,6 +47,8 @@ class AppActivity : AppCompatActivity() {
 
     companion object {
         var Bundle.textArg: String? by StringArg
+        var Bundle.longArg: Long? by LongArg
+
     }
 
 }

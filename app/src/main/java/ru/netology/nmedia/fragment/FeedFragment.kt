@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.AppActivity.Companion.longArg
 import ru.netology.nmedia.activity.AppActivity.Companion.textArg
 import ru.netology.nmedia.adapter.PostListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -58,7 +59,10 @@ class FeedFragment : Fragment() {
                 override fun onEdit(post: Post) {
                     findNavController().navigate(
                         R.id.action_fragmentFeed_to_newPostFragment,
-                        Bundle().apply { textArg = post.content }
+                        Bundle().apply {
+                            longArg = post.id
+                            textArg = post.content
+                        }
                     )
 
                 }
@@ -74,15 +78,13 @@ class FeedFragment : Fragment() {
                 }
 
                 override fun onOpen(post: Post) {
-                        findNavController().navigate(
-                            R.id.action_fragmentFeed_to_showPostFragment,
-                            Bundle().apply {
-                                putLong("postId", post.id)
-                            }
-                        )
-                    }
-
-
+                    findNavController().navigate(
+                        R.id.action_fragmentFeed_to_showPostFragment,
+                        Bundle().apply {
+                            putLong("postId", post.id)
+                        }
+                    )
+                }
             }
         )
 
@@ -91,7 +93,6 @@ class FeedFragment : Fragment() {
         viewModel.get().observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
-
         binding.add.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentFeed_to_newPostFragment)
         }
