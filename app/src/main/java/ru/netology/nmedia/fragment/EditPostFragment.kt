@@ -30,6 +30,7 @@
 
             arguments?.textArg?.let(binding.edit::setText)
             val postID = arguments?.longArg
+
             binding.ok.setOnClickListener {
                 if (binding.edit.text.isNullOrBlank()) {
                     Toast.makeText(

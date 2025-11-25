@@ -31,10 +31,12 @@ class NewPostFragment : Fragment() {
 
         arguments?.textArg?.let(binding.edit::setText)
         val draft = DraftSharedPref(requireContext())
-        val showDraft = draft.readDraft()
-        if(!showDraft.isNullOrBlank()) {
-            binding.edit.setText(showDraft)
-        }
+
+
+        if (!draft.readDraft().isNullOrBlank()) {
+            binding.edit.setText(draft.readDraft())
+        } else binding.edit.setText("")
+
         binding.ok.setOnClickListener {
             if (binding.edit.text.isNullOrBlank()) {
                 Toast.makeText(

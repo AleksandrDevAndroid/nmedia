@@ -24,7 +24,6 @@
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
-            val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
             val binding = FragmentAddVideoBinding.inflate(layoutInflater, container, false)
             binding.ok.setOnClickListener {
                 if (binding.edit.text.isNullOrBlank()) {
@@ -35,7 +34,9 @@
                     )
                         .show()
                 } else {
-                    viewModel.addVideo(binding.edit.text.toString())
+                    Bundle().apply {
+                        textArg = binding.edit.text.toString()
+                    }
                     findNavController().navigateUp()
                 }
             }
