@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_fragmentFeed_to_showPostFragment"
             app:destination="@id/showPostFragment" />
+        <action
+            android:id="@+id/action_fragmentFeed_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/newPostFragment"
@@ -32,14 +35,23 @@
         android:label="show_post_fragment"
         tools:layout="@layout/fragment_show_post" >
         <action
-            android:id="@+id/action_showPostFragment_to_newPostFragment"
-            app:destination="@id/newPostFragment" />
+            android:id="@+id/action_showPostFragment_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/addVideoFragment"
         android:name="ru.netology.nmedia.fragment.AddVideoFragment"
         android:label="fragment_add_video"
         tools:layout="@layout/fragment_add_video"
+        />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="ru.netology.nmedia.fragment.EditPostFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_post"
         >
+        <action
+            android:id="@+id/action_editFragment_to_addVideoFragment"
+            app:destination="@id/addVideoFragment" />
     </fragment>
 </navigation>

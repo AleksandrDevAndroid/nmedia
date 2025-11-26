@@ -1,11 +1,11 @@
 package ru.netology.nmedia.viewmodel
+
 import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.util.copy
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.postRepository.PostRepository
@@ -27,7 +27,8 @@ private val empty = Post(
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: PostRepository = PostRepositorySQLiteImpl(AppDb.getInstance(application).postDao)
+    private val repository: PostRepository =
+        PostRepositorySQLiteImpl(AppDb.getInstance(application).postDao)
 
     @RequiresApi(Build.VERSION_CODES.O)
     var edited = MutableLiveData(empty)
@@ -38,27 +39,17 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun removeById(id: Long) = repository.removeBeId(id)
 
     @RequiresApi(Build.VERSION_CODES.O)
-   fun edit(postID: Long?, editText: String) {
+    fun edit(postID: Long?, editText: String, url: String?) {
         repository.get().value?.find { it.id == postID }?.let { post ->
-            repository.save(post.copy(content = editText))
+            repository.save(post.copy(content = editText, video = url))
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun save(newContent: String) {
+    fun save(newContent: String, url: String?) {
         edited.value?.let { post ->
             if (post.content != newContent) {
-                repository.save(post.copy(content = newContent))
-            }
-        }
-        edited.value = empty
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun addVideo(url: String) {
-        edited.value?.let { post ->
-            if (post.video != url) {
-                repository.save(post.copy(video = url))
+                repository.save(post.copy(content = newContent, video = url))
             }
         }
         edited.value = empty

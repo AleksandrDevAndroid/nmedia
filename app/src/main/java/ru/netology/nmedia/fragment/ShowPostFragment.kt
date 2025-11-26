@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.AppActivity.Companion.longArg
 import ru.netology.nmedia.activity.AppActivity.Companion.textArg
 import ru.netology.nmedia.adapter.PostListener
 import ru.netology.nmedia.adapter.PostViewHolder
@@ -56,9 +57,13 @@ class ShowPostFragment() : Fragment() {
 
             override fun onEdit(post: Post) {
                 findNavController().navigate(
-                    R.id.action_showPostFragment_to_newPostFragment,
-                    Bundle().apply { textArg = post.content }
+                    R.id.action_showPostFragment_to_editFragment,
+                    Bundle().apply {
+                        longArg = post.id
+                        textArg = post.content
+                    }
                 )
+
             }
 
             override fun onPlay(post: Post) {

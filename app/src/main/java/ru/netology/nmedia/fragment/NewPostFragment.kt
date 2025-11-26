@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.AppActivity.Companion.textArg
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
@@ -22,28 +22,28 @@ import kotlin.getValue
 class NewPostFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentNewPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
-
+        var urlString: String? = null
+        parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
+            urlString = bundle.textArg
+        }
         arguments?.textArg?.let(binding.edit::setText)
         val draft = DraftSharedPref(requireContext())
         val showDraft = draft.readDraft()
-        if(!showDraft.isNullOrBlank()) {
+        if (!showDraft.isNullOrBlank()) {
             binding.edit.setText(showDraft)
         }
+
         binding.ok.setOnClickListener {
             if (binding.edit.text.isNullOrBlank()) {
                 Toast.makeText(
-                    requireContext(),
-                    getString(R.string.post_content_is_empty),
-                    Toast.LENGTH_SHORT
+                    requireContext(), getString(R.string.post_content_is_empty), Toast.LENGTH_SHORT
                 ).show()
             } else {
-                viewModel.save(binding.edit.text.toString())
+                viewModel.save(binding.edit.text.toString(),urlString)
                 findNavController().navigateUp()
                 draft.clearDraft()
             }
@@ -56,7 +56,7 @@ class NewPostFragment : Fragment() {
 
         binding.addMedia.setOnClickListener {
             findNavController().navigate(
-                R.id.addVideoFragment
+                R.id.action_newPostFragment_to_addVideoFragment,
             )
         }
         return binding.root

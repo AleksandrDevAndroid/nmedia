@@ -1,6 +1,5 @@
     package ru.netology.nmedia.fragment
 
-    import android.R.attr.text
     import android.os.Build
     import android.os.Bundle
     import android.view.LayoutInflater
@@ -9,13 +8,12 @@
     import android.widget.Toast
     import androidx.annotation.RequiresApi
     import androidx.fragment.app.Fragment
-    import androidx.fragment.app.viewModels
+    import androidx.fragment.app.setFragmentResult
     import androidx.navigation.fragment.findNavController
     import ru.netology.nmedia.R
     import ru.netology.nmedia.activity.AppActivity.Companion.textArg
     import ru.netology.nmedia.databinding.FragmentAddVideoBinding
-    import ru.netology.nmedia.viewmodel.PostViewModel
-    import kotlin.getValue
+
 
     class AddVideoFragment : Fragment() {
         @RequiresApi(Build.VERSION_CODES.P)
@@ -24,18 +22,15 @@
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
-            val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
             val binding = FragmentAddVideoBinding.inflate(layoutInflater, container, false)
+            arguments?.textArg?.let(binding.textUrl::setText)
             binding.ok.setOnClickListener {
-                if (binding.edit.text.isNullOrBlank()) {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.post_url_is_empty),
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                if (binding.textUrl.text.isNullOrBlank()) {
+                    findNavController().navigateUp()
                 } else {
-                    viewModel.addVideo(binding.edit.text.toString())
+                    setFragmentResult("url", Bundle().apply {
+                        textArg = binding.textUrl.text.toString()
+                    })
                     findNavController().navigateUp()
                 }
             }
