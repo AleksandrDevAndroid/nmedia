@@ -14,6 +14,9 @@ interface PostDao {
     @Upsert
     fun save(post: PostEntity): Long
 
+    @Query("UPDATE PostEntity SET content = :content, video = :video WHERE id = :id")
+    fun edit(id: Long?, content: String, video: String?)
+
     @Query(
         "UPDATE PostEntity SET\n" +
                 "               likes = likes + CASE WHEN likedByMe THEN -1 ELSE 1 END,\n" +
@@ -27,4 +30,5 @@ interface PostDao {
 
     @Query(" UPDATE  PostEntity SET share = share + 1  WHERE id = :id;")
     fun share(id: Long)
+
 }

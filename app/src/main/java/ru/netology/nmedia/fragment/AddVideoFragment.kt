@@ -1,18 +1,20 @@
     package ru.netology.nmedia.fragment
 
+    import androidx.activity.OnBackPressedCallback
     import android.os.Build
     import android.os.Bundle
     import android.view.LayoutInflater
     import android.view.View
     import android.view.ViewGroup
-    import android.widget.Toast
+    import androidx.activity.ComponentActivity
     import androidx.annotation.RequiresApi
     import androidx.fragment.app.Fragment
     import androidx.fragment.app.setFragmentResult
     import androidx.navigation.fragment.findNavController
-    import ru.netology.nmedia.R
     import ru.netology.nmedia.activity.AppActivity.Companion.textArg
     import ru.netology.nmedia.databinding.FragmentAddVideoBinding
+    import ru.netology.nmedia.postRepository.DraftSharedPref
+
 
 
     class AddVideoFragment : Fragment() {
@@ -23,13 +25,25 @@
             savedInstanceState: Bundle?
         ): View {
             val binding = FragmentAddVideoBinding.inflate(layoutInflater, container, false)
+
+            val draft = DraftSharedPref(requireContext())
+            val showDraft = draft.readDraft()
+            if (!showDraft.isNullOrBlank()) {
+                binding.textUrl.setText(showDraft)
+            }
             arguments?.textArg?.let(binding.textUrl::setText)
+
+
+
             binding.ok.setOnClickListener {
-                if (binding.textUrl.text.isNullOrBlank()) {
+                val url = binding.textUrl.text.toString()
+                if (url.isNullOrBlank()) {
+                    draft.clearDraft()
                     findNavController().navigateUp()
                 } else {
+                    draft.saveDraft(url)
                     setFragmentResult("url", Bundle().apply {
-                        textArg = binding.textUrl.text.toString()
+                        textArg = url
                     })
                     findNavController().navigateUp()
                 }
@@ -39,4 +53,5 @@
             }
             return binding.root
         }
+
     }

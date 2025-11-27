@@ -11,14 +11,18 @@ class PostRepositorySQLiteImpl(
     private val dao: PostDao
 ) : PostRepository {
 
-    override fun get(): LiveData<List<Post> > = dao.getAll().map { posts ->
+    override fun get(): LiveData<List<Post>> = dao.getAll().map { posts ->
         posts.map { postEntity ->
             postEntity.toPost()
         }
     }
 
     override fun save(post: Post) {
-       dao.save(PostEntity.fromPost(post))
+        dao.save(PostEntity.fromPost(post))
+    }
+
+    override fun edit(id: Long?, content: String, url: String?) {
+         dao.edit(id,content,url)
     }
 
     override fun likeById(id: Long) {

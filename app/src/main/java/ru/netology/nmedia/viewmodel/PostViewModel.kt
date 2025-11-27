@@ -35,14 +35,17 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun get(): LiveData<List<Post>> = repository.get()
     fun likeById(id: Long) = repository.likeById(id)
+
     fun share(id: Long) = repository.share(id)
     fun removeById(id: Long) = repository.removeBeId(id)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun edit(postID: Long?, editText: String, url: String?) {
-        repository.get().value?.find { it.id == postID }?.let { post ->
-            repository.save(post.copy(content = editText, video = url))
-        }
+        val oldUrl = edited.value?.video.toString()
+        if (url == null) {
+            repository.edit(postID, editText, oldUrl)
+        } else repository.edit(postID, editText, url)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

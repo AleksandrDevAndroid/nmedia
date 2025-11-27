@@ -27,12 +27,15 @@ class EditPostFragment : Fragment() {
     ): View? {
         val binding = FragmentEditPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
+
         var urlString: String? = null
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
             urlString = bundle.textArg
         }
+
         arguments?.textArg?.let(binding.edit::setText)
         val postID = arguments?.longArg
+
         binding.ok.setOnClickListener {
             if (binding.edit.text.isNullOrBlank()) {
                 Toast.makeText(

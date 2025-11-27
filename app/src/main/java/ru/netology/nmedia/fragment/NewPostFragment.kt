@@ -26,11 +26,14 @@ class NewPostFragment : Fragment() {
     ): View? {
         val binding = FragmentNewPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
+
         var urlString: String? = null
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
             urlString = bundle.textArg
         }
+
         arguments?.textArg?.let(binding.edit::setText)
+
         val draft = DraftSharedPref(requireContext())
         val showDraft = draft.readDraft()
         if (!showDraft.isNullOrBlank()) {
@@ -43,15 +46,15 @@ class NewPostFragment : Fragment() {
                     requireContext(), getString(R.string.post_content_is_empty), Toast.LENGTH_SHORT
                 ).show()
             } else {
-                viewModel.save(binding.edit.text.toString(),urlString)
+                viewModel.save(binding.edit.text.toString(), urlString)
                 findNavController().navigateUp()
                 draft.clearDraft()
             }
         }
+
         binding.cancel.setOnClickListener {
             draft.saveDraft(binding.edit.text.toString())
             findNavController().navigateUp()
-
         }
 
         binding.addMedia.setOnClickListener {
