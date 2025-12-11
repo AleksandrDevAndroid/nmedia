@@ -17,8 +17,8 @@ import java.time.format.DateTimeFormatter
 private val empty = Post(
     id = 0,
     author = "",
-    published = LocalDateTime.now()
-        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).toString(),
+    published = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
+        .toString(),
     content = "",
     likes = 0,
     share = 0,
@@ -41,11 +41,13 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun edit(postID: Long?, editText: String, url: String?) {
-        val oldUrl = edited.value?.video.toString()
-        if (url == null) {
-            repository.edit(postID, editText, oldUrl)
-        } else repository.edit(postID, editText, url)
+        edited.value.let { post ->
+            val oldUrl = post?.video.toString()
+            if (url == null) {
+                repository.edit(postID, editText, oldUrl)
+            } else repository.edit(postID, editText, url)
 
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,5 +60,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
     }
 }
+
 
 

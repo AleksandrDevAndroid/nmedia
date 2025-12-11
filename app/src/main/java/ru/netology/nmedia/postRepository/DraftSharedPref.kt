@@ -4,29 +4,17 @@ import android.content.Context
 import com.google.gson.Gson
 
 class DraftSharedPref(private val context: Context) {
+    private val sharedPref = context.getSharedPreferences("draft_file", Context.MODE_PRIVATE)
 
-    fun saveDraft(content: String) {
-        context.openFileOutput(DRAFT_FILE, Context.MODE_PRIVATE).bufferedWriter().use {
-            it.write(gson.toJson(content))
-        }
+    fun savePref(key: String, value: String) {
+        sharedPref.edit().putString(key,value).apply()
+    }
+    fun getPref(key: String, defaultString: String = "") : String {
+       return sharedPref.getString(key,defaultString) ?: defaultString
     }
 
-
-    fun readDraft(): String? {
-        val file = context.filesDir.resolve(DRAFT_FILE)
-        return (if (file.exists()) {
-            context.openFileInput(DRAFT_FILE).bufferedReader().use {
-                gson.fromJson(it, String::class.java)
-            }
-        } else "")
+    fun remove(key: String) {
+        sharedPref.edit().remove(key).apply()
     }
 
-    fun clearDraft() {
-        context.deleteFile(DRAFT_FILE)
-    }
-
-    companion object {
-        const val DRAFT_FILE = "draft.json"
-        val gson = Gson()
-    }
 }
