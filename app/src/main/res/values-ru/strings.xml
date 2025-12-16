@@ -13,4 +13,11 @@
     <string name="cancel">Отмена</string>
     <string name="photo">Видео/Фото</string>
     <string name="emptyURL">Видео не доступно</string>
+    <string name="notification_user_liked">Пользователь %1$s лайкнул %2$s\'s пост</string>
+    <string name="notification_from_app">Вам пришло уведомление</string>
+    <string name="notification_user_new_post">%1$s опубликовал новый пост:</string>
+    <string name="channel_remote_name">Уведомление</string>
+    <string name="channel_remote_description">Уведомления с удалённого сервера</string>
+    <string name="google_play_unavailable">Google Api Недоступно</string>
+
 </resources>
