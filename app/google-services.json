@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12421165706",
+    "project_id": "chatik-ccdc3",
+    "storage_bucket": "chatik-ccdc3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12421165706:android:15e2f41fa52c4ffe25f373",
+        "android_client_info": {
+          "package_name": "ru.netology.nmedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8lBdaLgAwe91STaycHdW3fvVXn-NKYDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
