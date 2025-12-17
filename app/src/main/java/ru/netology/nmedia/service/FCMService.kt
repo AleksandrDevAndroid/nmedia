@@ -1,12 +1,14 @@
 package ru.netology.nmedia.service
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessaging
@@ -73,8 +75,9 @@ class FCMService : FirebaseMessagingService() {
         print(token)
     }
 
+    @SuppressLint("StringFormatInvalid")
     private fun handleEmpty (){
-        val notification = Notification.Builder(this,channelId)
+        val notification = NotificationCompat.Builder(this,channelId)
             .setSmallIcon(R.drawable.ic_stat_name)
             .setContentTitle(
                 getString(
@@ -102,6 +105,7 @@ class FCMService : FirebaseMessagingService() {
     }
 
 
+    @SuppressLint("StringFormatMatches")
     private fun handleNewPost(content: NewPost) {
         val notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_stat_name)
