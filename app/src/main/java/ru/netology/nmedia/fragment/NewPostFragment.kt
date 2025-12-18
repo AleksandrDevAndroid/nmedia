@@ -11,7 +11,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.nmedia.DTO.Post
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.AppActivity.Companion.textArg
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
@@ -28,7 +27,7 @@ class NewPostFragment : Fragment() {
         val binding = FragmentNewPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
-        var urlString: String? = null
+        var urlString: String? = ""
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
             urlString = bundle?.getString("textArg")
 

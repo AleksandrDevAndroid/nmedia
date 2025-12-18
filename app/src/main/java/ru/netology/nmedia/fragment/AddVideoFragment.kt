@@ -31,7 +31,7 @@ class AddVideoFragment : Fragment() {
             binding.textUrl.setText(showDraft)
         }
 
-        val oldUrl = arguments?.textArg
+        val oldUrl = arguments?.textArg?.trim()
         arguments?.textArg?.let(binding.textUrl::setText)
 
         activity?.onBackPressedDispatcher?.addCallback(
@@ -46,24 +46,26 @@ class AddVideoFragment : Fragment() {
 
         binding.ok.setOnClickListener {
             val url = binding.textUrl.text.toString()
-            if (url.isNullOrBlank()) {
                 draft.remove("url")
-                findNavController().navigateUp()
-            } else {
                 setFragmentResult("url", Bundle().apply {
                     textArg = url
                 })
                 findNavController().navigateUp()
-            }
+            /*else {
+                setFragmentResult("url", Bundle().apply {
+                    textArg = url
+                })
+                findNavController().navigateUp()
+            }*/
         }
         binding.cancel.setOnClickListener {
-            if(!oldUrl.isNullOrBlank()){
+            if(!oldUrl.isNullOrBlank())
                 setFragmentResult("url", Bundle().apply {
                     textArg = oldUrl
+/*
                     draft.remove("url")
+*/
                 })
-            }
-            draft.savePref("url",binding.textUrl.text.toString())
             findNavController().navigateUp()
         }
         return binding.root
