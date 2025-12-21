@@ -23,7 +23,7 @@ private val empty = Post(
     likes = 0,
     share = 0,
     likedByMe = false,
-    video = null
+    video = ""
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
@@ -41,12 +41,18 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun edit(postID: Long?, editText: String, url: String?) {
-        edited.value.let { post ->
-            val oldUrl = post?.video.toString()
-            if (url == null) {
-                repository.edit(postID, editText, oldUrl)
-            } else repository.edit(postID, editText, url)
-
+        repository.get().value?.find { post -> post.id == postID }.let { post ->
+            if (post?.video != url) {
+                repository.edit(
+                    postID, editText, url
+                )
+            } else if (post?.content != editText) {
+                repository.edit(
+                    postID,
+                    editText,
+                    post?.video
+                )
+            }
         }
     }
 
@@ -60,6 +66,3 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
     }
 }
-
-
-

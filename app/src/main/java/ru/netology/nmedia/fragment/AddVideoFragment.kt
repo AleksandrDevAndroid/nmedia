@@ -15,13 +15,10 @@ import ru.netology.nmedia.databinding.FragmentAddVideoBinding
 import ru.netology.nmedia.postRepository.DraftSharedPref
 
 
-
 class AddVideoFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentAddVideoBinding.inflate(layoutInflater, container, false)
 
@@ -31,39 +28,29 @@ class AddVideoFragment : Fragment() {
             binding.textUrl.setText(showDraft)
         }
 
-        val oldUrl = arguments?.textArg
+        val oldUrl = arguments?.textArg?.trim()
         arguments?.textArg?.let(binding.textUrl::setText)
 
         activity?.onBackPressedDispatcher?.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    draft.savePref("url",binding.textUrl.text.toString())
+                    draft.savePref("url", binding.textUrl.text.toString())
                     findNavController().navigateUp()
                 }
-            }
-        )
+            })
 
         binding.ok.setOnClickListener {
             val url = binding.textUrl.text.toString()
-            if (url.isNullOrBlank()) {
-                draft.remove("url")
-                findNavController().navigateUp()
-            } else {
-                setFragmentResult("url", Bundle().apply {
-                    textArg = url
-                })
-                findNavController().navigateUp()
-            }
+            draft.remove("url")
+            setFragmentResult("url", Bundle().apply {
+                textArg = url
+            })
+            findNavController().navigateUp()
         }
         binding.cancel.setOnClickListener {
-            if(!oldUrl.isNullOrBlank()){
-                setFragmentResult("url", Bundle().apply {
-                    textArg = oldUrl
-                    draft.remove("url")
-                })
-            }
-            draft.savePref("url",binding.textUrl.text.toString())
+            if (!oldUrl.isNullOrBlank()) setFragmentResult("url", Bundle().apply {
+                textArg = oldUrl
+            })
             findNavController().navigateUp()
         }
         return binding.root

@@ -29,7 +29,10 @@ class EditPostFragment : Fragment() {
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
         var url = arguments?.getString("url")
-        var urlString: String? = null
+        var urlString: String? = ""
+        if(!url.isNullOrBlank()){
+            urlString = url
+        }
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
             urlString = bundle.textArg
         }
