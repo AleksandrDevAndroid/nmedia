@@ -25,6 +25,10 @@ captures/
 .externalNativeBuild
 .cxx
 
+# Firebase configuration
+google-services.json
+**/google-services.json
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,16 +27,29 @@ class NewPostFragment : Fragment() {
     ): View? {
         val binding = FragmentNewPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
+
         var urlString: String? = null
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
-            urlString = bundle.textArg
+            urlString = bundle?.getString("textArg")
+
         }
+
         arguments?.textArg?.let(binding.edit::setText)
+
         val draft = DraftSharedPref(requireContext())
-        val showDraft = draft.readDraft()
+        val showDraft = draft.getPref("text")
         if (!showDraft.isNullOrBlank()) {
             binding.edit.setText(showDraft)
         }
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    draft.savePref("text",binding.edit.text.toString())
+                    findNavController().navigateUp()
+                }
+            }
+        )
 
         binding.ok.setOnClickListener {
             if (binding.edit.text.isNullOrBlank()) {
@@ -43,15 +57,16 @@ class NewPostFragment : Fragment() {
                     requireContext(), getString(R.string.post_content_is_empty), Toast.LENGTH_SHORT
                 ).show()
             } else {
-                viewModel.save(binding.edit.text.toString(),urlString)
+                draft.remove("text")
+                draft.remove("url")
+                viewModel.save(binding.edit.text.toString(), urlString)
                 findNavController().navigateUp()
-                draft.clearDraft()
             }
         }
-        binding.cancel.setOnClickListener {
-            draft.saveDraft(binding.edit.text.toString())
-            findNavController().navigateUp()
 
+        binding.cancel.setOnClickListener {
+            draft.savePref("text",binding.edit.text.toString())
+            findNavController().navigateUp()
         }
 
         binding.addMedia.setOnClickListener {

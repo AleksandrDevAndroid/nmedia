@@ -27,12 +27,20 @@ class EditPostFragment : Fragment() {
     ): View? {
         val binding = FragmentEditPostBinding.inflate(layoutInflater, container, false)
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
-        var urlString: String? = null
+
+        var url = arguments?.getString("url")
+        var urlString: String? = ""
+        if(!url.isNullOrBlank()){
+            urlString = url
+        }
         parentFragmentManager.setFragmentResultListener("url", viewLifecycleOwner) { _, bundle ->
             urlString = bundle.textArg
         }
+
         arguments?.textArg?.let(binding.edit::setText)
         val postID = arguments?.longArg
+
+
         binding.ok.setOnClickListener {
             if (binding.edit.text.isNullOrBlank()) {
                 Toast.makeText(
@@ -50,7 +58,10 @@ class EditPostFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.addMedia.setOnClickListener {
-            findNavController().navigate(R.id.action_editFragment_to_addVideoFragment)
+            findNavController().navigate(R.id.action_editFragment_to_addVideoFragment,
+                Bundle().apply {
+                    textArg = url
+                })
         }
         return binding.root
     }

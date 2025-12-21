@@ -62,6 +62,7 @@ class FeedFragment : Fragment() {
                         Bundle().apply {
                             longArg = post.id
                             textArg = post.content
+                            putString("url",post.video)
                         }
                     )
 

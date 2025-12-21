@@ -17,13 +17,13 @@ import java.time.format.DateTimeFormatter
 private val empty = Post(
     id = 0,
     author = "",
-    published = LocalDateTime.now()
-        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")).toString(),
+    published = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
+        .toString(),
     content = "",
     likes = 0,
     share = 0,
     likedByMe = false,
-    video = null
+    video = ""
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
@@ -35,13 +35,24 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun get(): LiveData<List<Post>> = repository.get()
     fun likeById(id: Long) = repository.likeById(id)
+
     fun share(id: Long) = repository.share(id)
     fun removeById(id: Long) = repository.removeBeId(id)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun edit(postID: Long?, editText: String, url: String?) {
-        repository.get().value?.find { it.id == postID }?.let { post ->
-            repository.save(post.copy(content = editText, video = url))
+        repository.get().value?.find { post -> post.id == postID }.let { post ->
+            if (post?.video != url) {
+                repository.edit(
+                    postID, editText, url
+                )
+            } else if (post?.content != editText) {
+                repository.edit(
+                    postID,
+                    editText,
+                    post?.video
+                )
+            }
         }
     }
 
@@ -55,5 +66,3 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
     }
 }
-
-

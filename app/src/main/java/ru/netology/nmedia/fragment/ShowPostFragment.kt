@@ -61,19 +61,20 @@ class ShowPostFragment() : Fragment() {
                     Bundle().apply {
                         longArg = post.id
                         textArg = post.content
+                        putString("url",post.video)
                     }
                 )
 
             }
 
             override fun onPlay(post: Post) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    activity?.let {
-                        if (intent.resolveActivity(it.packageManager) != null) {
-                            startActivity(intent)
-                        } else
-                            startActivity(intent)
-                    }
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                activity?.let {
+                    if (intent.resolveActivity(it.packageManager) != null) {
+                        startActivity(intent)
+                    } else
+                        startActivity(intent)
+                }
 
             }
 
