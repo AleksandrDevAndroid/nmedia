@@ -27,7 +27,12 @@ class PostViewHolder(
             like.text = Format.format(post.likes)
             share.text = Format.format(post.share)
 
-            binding.group.isVisible = post.video != null
+            var visibleVide = false
+
+            if(post.video != "".trim()){
+                visibleVide = true
+            }
+            binding.group.isVisible = visibleVide
 
             playVideo.setOnClickListener {
                 listener.onPlay(post)
